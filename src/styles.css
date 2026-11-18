@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.vista-btn {
+  background: linear-gradient(180deg, #f7fbff 0%, #d8e8f8 48%, #b3d2f0 51%, #d6ebff 100%);
+  border: 1px solid #486b8a;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 2px rgba(0, 0, 0, 0.35);
+  color: #162b3d;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+.vista-btn:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #e1f1ff 48%, #9fd0ff 51%, #e3f4ff 100%);
+  border-color: #2b6ca3;
+  box-shadow: inset 0 1px 0 #ffffff, 0 0 8px rgba(102, 187, 255, 0.7);
+}
+
+.vista-btn:active {
+  background: linear-gradient(180deg, #a8cae8 0%, #c8e1f7 50%, #98c1e6 100%);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.35);
+}
+
+.vista-btn-danger {
+  background: linear-gradient(180deg, #fff5f5 0%, #f5d0d0 48%, #e39f9f 51%, #f7cccc 100%);
+  border: 1px solid #8a4848;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 3px rgba(0, 0, 0, 0.4);
+  color: #4a1212;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.7);
+}
+
+.vista-btn-danger:hover {
+  background: linear-gradient(180deg, #ffffff 0%, #ffe0e0 48%, #f08484 51%, #ffd6d6 100%);
+  box-shadow: inset 0 1px 0 #ffffff, 0 0 8px rgba(255, 102, 102, 0.7);
+}
+
+.aero-panel {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88) 0%, rgba(235, 240, 245, 0.82) 100%);
+  border: 1px solid #6b7682;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 4px 12px rgba(0, 0, 0, 0.35);
+}
+
+.aero-titlebar {
+  background: linear-gradient(180deg, #8496a8 0%, #58697a 50%, #445363 51%, #5c6e80 100%);
+  border-bottom: 1px solid #35414d;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.45);
+}
+
+.nxe-bg {
+  background: radial-gradient(ellipse at 50% 0%, #9aa1a8 0%, #686e75 55%, #3d4147 100%);
+}

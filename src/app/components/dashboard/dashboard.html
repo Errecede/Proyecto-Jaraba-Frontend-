@@ -1,0 +1,164 @@
+<div class="min-h-screen nxe-bg text-slate-900 relative font-sans select-none pb-16 overflow-x-hidden">
+
+  <div class="fixed bottom-0 left-0 right-0 h-44 pointer-events-none overflow-hidden z-0">
+    <div class="w-[140%] -ml-[20%] h-64 rounded-t-[100%] bg-gradient-to-b from-[#4f545c] to-[#26292e] border-t-2 border-white/25 shadow-[0_-10px_30px_rgba(0,0,0,0.45)]"></div>
+  </div>
+
+  <header
+    [class]="isAtTop() ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0 pointer-events-none'"
+    class="sticky top-0 z-50 w-full transition-all duration-300 ease-out border-b-2 border-[#3b5d7a] shadow-[0_6px_20px_rgba(0,0,0,0.45)] overflow-hidden">
+
+    <div class="relative w-full bg-gradient-to-r from-[#1e6fa8] via-[#45a8e0] to-[#3ca85c]">
+      <div
+        class="absolute inset-0 bg-cover bg-center opacity-85 mix-blend-normal"
+        style="background-image: url('assets/frutiger-city.jpg');">
+      </div>
+
+      <div class="absolute inset-0 bg-gradient-to-b from-white/45 via-transparent to-black/35"></div>
+
+      <div class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-4 sm:py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+
+        <div class="flex items-center gap-3.5 bg-white/30 backdrop-blur-md px-3.5 py-2 rounded-[4px] border border-white/75 shadow-[inset_0_1px_0_rgba(255,255,255,0.9),0_2px_6px_rgba(0,0,0,0.25)]">
+          <div class="w-11 h-11 rounded-[4px] bg-gradient-to-b from-[#eef7ff] via-[#b8dcf7] to-[#7ab8eb] border border-[#3a688f] shadow-[inset_0_1px_0_#ffffff,0_2px_4px_rgba(0,0,0,0.3)] flex items-center justify-center shrink-0">
+            <span class="text-sm font-black tracking-tighter text-[#123859] drop-shadow-[0_1px_0_rgba(255,255,255,0.8)]">RC</span>
+          </div>
+          <div>
+            <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.75)]">
+              RobCorp Bank
+            </h1>
+            <p class="text-[11px] font-medium text-white/95 drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]">
+              Portal Bancario en Línea
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <span class="hidden md:inline-block px-2.5 py-1 text-[11px] font-semibold text-white bg-black/35 border border-white/40 rounded-[3px] backdrop-blur-sm">
+            Sesión Activa
+          </span>
+          <button
+            (click)="logout()"
+            class="vista-btn-danger px-4 py-1.5 rounded-[3px] text-xs font-bold tracking-wide cursor-pointer flex items-center gap-1.5 transition-all">
+            <span class="w-2 h-2 rounded-full bg-red-600 border border-white shadow-sm"></span>
+            Cerrar Sesión
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-6 sm:pt-8 flex flex-col gap-6">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+
+      <section class="aero-panel rounded-[4px] overflow-hidden flex flex-col justify-between">
+        <div class="aero-titlebar px-3 py-1.5 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-3.5 h-3.5 rounded-[2px] bg-gradient-to-b from-[#a8e6ff] to-[#2b8cbe] border border-white/80 shadow-sm"></div>
+            <span class="text-xs font-semibold text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.7)]">Balance Principal</span>
+          </div>
+          <span class="text-[10px] text-white/80 font-mono">MXN</span>
+        </div>
+
+        <div class="p-4 sm:p-5">
+          <p class="text-[11px] font-semibold uppercase text-slate-500">Saldo Disponible</p>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-800 mt-1 tracking-tight drop-shadow-[0_1px_0_#ffffff]">
+            {{ balance() | currency:'MXN':'symbol':'1.2-2' }}
+          </h2>
+          <div class="mt-4 pt-2.5 border-t border-slate-300 flex justify-between items-center text-[11px] text-slate-600">
+            <span>Cuenta Corriente</span>
+            <span class="font-mono font-semibold bg-slate-200/80 px-1.5 py-0.5 rounded-[2px] border border-slate-300">•••• 8921</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="aero-panel rounded-[4px] overflow-hidden flex flex-col justify-between">
+        <div class="aero-titlebar px-3 py-1.5 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <div class="w-3.5 h-3.5 rounded-[2px] bg-gradient-to-b from-[#ffe599] to-[#d98218] border border-white/80 shadow-sm"></div>
+            <span class="text-xs font-semibold text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.7)]">Operaciones</span>
+          </div>
+        </div>
+
+        <div class="p-4 sm:p-5 flex flex-col justify-center h-full">
+          <button (click)="openModal('transfer')" class="vista-btn py-3 px-4 rounded-[3px] text-xs font-semibold cursor-pointer flex items-center justify-center gap-2 transition-all w-full">
+            <svg class="w-5 h-5 text-[#1b588c]" fill="currentColor" viewBox="0 0 20 20">
+              <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z"/>
+            </svg>
+            <span>Realizar Transferencia</span>
+          </button>
+        </div>
+      </section>
+
+    </div>
+
+
+    <section class="aero-panel rounded-[4px] overflow-hidden">
+      <div class="aero-titlebar px-3.5 py-2 flex items-center justify-between">
+        <div class="flex items-center gap-2">
+          <div class="w-3.5 h-3.5 rounded-[2px] bg-gradient-to-b from-white to-slate-400 border border-white/80 shadow-sm"></div>
+          <h3 class="text-xs font-semibold text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.7)]">Historial de Movimientos</h3>
+        </div>
+        <span class="text-[10px] text-white/85">{{ transactions().length }} registros</span>
+      </div>
+
+      <div class="overflow-x-auto bg-white/95 min-h-[120px]">
+        @if (transactions().length === 0) {
+          <div class="flex items-center justify-center py-8">
+            <p class="text-xs text-slate-500">No hay transacciones registradas en esta cuenta.</p>
+          </div>
+        } @else {
+          <table class="w-full text-left text-xs">
+            <thead class="bg-slate-200 text-slate-700 border-b border-slate-300">
+              <tr>
+                <th class="p-2.5">Fecha</th>
+                <th class="p-2.5">Detalle / ID</th>
+                <th class="p-2.5 text-right">Monto</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-200">
+              @for (tx of transactions(); track tx.id) {
+                <tr class="hover:bg-slate-100/80 transition-colors">
+                  <td class="p-2.5 text-slate-600 font-mono">{{ tx.createdAt | date:'short' }}</td>
+                  <td class="p-2.5 text-slate-800 font-medium">Transferencia realizada</td>
+                  <td class="p-2.5 text-right font-bold text-red-600 font-mono">
+                    - {{ tx.amount | currency:'MXN':'symbol':'1.2-2' }}
+                  </td>
+                </tr>
+              }
+            </tbody>
+          </table>
+        }
+      </div>
+    </section>
+
+  </main>
+
+
+  @if (activeModal() === 'transfer') {
+    <div class="fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+      <div class="aero-panel w-full max-w-md rounded-[4px] overflow-hidden shadow-2xl">
+        <div class="aero-titlebar px-3.5 py-2 flex items-center justify-between">
+          <span class="text-xs font-semibold text-white drop-shadow-[0_1px_1px_rgba(0,0,0,0.7)]">Nueva Transferencia</span>
+          <button (click)="closeModal()" class="text-white hover:text-red-200 font-bold text-xs cursor-pointer">✕</button>
+        </div>
+        <div class="p-5 bg-white/95 flex flex-col gap-4 text-xs">
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Cuenta Destino / Usuario</label>
+            <input type="text" [(ngModel)]="transferReceiver" placeholder="Ingresa cuenta o correo" class="w-full px-3 py-2 bg-white text-slate-900 border border-slate-300 rounded-[3px] focus:outline-none focus:ring-2 focus:ring-[#45a8e0]">
+          </div>
+          <div>
+            <label class="block font-semibold text-slate-700 mb-1">Monto a Transferir (MXN)</label>
+            <input type="number" [(ngModel)]="transferAmount" placeholder="0.00" class="w-full px-3 py-2 bg-white text-slate-900 border border-slate-300 rounded-[3px] focus:outline-none focus:ring-2 focus:ring-[#45a8e0]">
+          </div>
+          <div class="flex justify-end gap-2 mt-2">
+            <button (click)="closeModal()" class="px-4 py-1.5 border border-slate-300 rounded-[3px] bg-slate-100 hover:bg-slate-200 font-semibold cursor-pointer">Cancelar</button>
+            <button (click)="executeTransfer()" class="vista-btn px-4 py-1.5 rounded-[3px] font-bold cursor-pointer">Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+
+</div>
