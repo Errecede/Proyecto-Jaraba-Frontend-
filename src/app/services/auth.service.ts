@@ -63,6 +63,11 @@ private apiURL = 'http://localhost:3000/auth'; //esto cambiaria si pongo la app 
     )
   }
 
+  //Registrar User
+  register(userData: {name: string; email: string; password: string;}){
+    return this.http.post(`${this.apiURL}/register`, userData);
+  }
+
 
   //salir
   logout(){
